@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   BookOpen,
@@ -9,7 +9,7 @@ import {
   Users,
   Settings,
   LogOut,
-} from "lucide-react"
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -22,9 +22,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
-} from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const menuItems = [
   {
@@ -57,34 +57,44 @@ const menuItems = [
     url: "/statistieken",
     icon: BarChart3,
   },
-]
+];
 
 export function AppSidebar() {
   return (
-    <Sidebar className="border-r">
-      <SidebarHeader className="p-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <BookOpen className="w-5 h-5 text-white" />
+    <Sidebar className="border-r bg-white">
+      <SidebarHeader className="p-6 border-b">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
+            <img
+              src="/Logo.png"
+              alt="Logo"
+              className="w-full h-full object-contain"
+            />
           </div>
+
           <div>
-            <h2 className="font-semibold text-lg">EduDashboard</h2>
-            <p className="text-sm text-muted-foreground">Docenten Portal</p>
+            <h2 className="font-semibold text-xl text-zwijsen-blue">Zwijsen</h2>
+            <p className="text-sm text-gray-600">Docenten Portal</p>
           </div>
         </div>
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="px-4 py-6">
         <SidebarGroup>
-          <SidebarGroupLabel>Navigatie</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
+            Navigatie
+          </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-1">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon className="w-4 h-4" />
-                      <span>{item.title}</span>
+                  <SidebarMenuButton asChild className="w-full">
+                    <Link
+                      href={item.url}
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-zwijsen-blue hover:text-[#0069B3] transition-all duration-200 font-semibold"
+                    >
+                      <item.icon className="w-5 h-5" />
+                      <span className="text-sm">{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -93,17 +103,22 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarSeparator />
+        <SidebarSeparator className="my-6" />
 
         <SidebarGroup>
-          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
+            Account
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href="/instellingen">
-                    <Settings className="w-4 h-4" />
-                    <span>Instellingen</span>
+                <SidebarMenuButton asChild className="w-full">
+                  <Link
+                    href="/instellingen"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-zwijsen-blue hover:text-[#0069B3] /transition-all duration-200 font-semibold"
+                  >
+                    <Settings className="w-5 h-5" />
+                    <span className="text-sm">Instellingen</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -112,21 +127,27 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-4">
-        <div className="flex items-center gap-3 p-2 rounded-lg bg-muted">
-          <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
+      <SidebarFooter className="p-4 border-t">
+        <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+          <div className="w-10 h-10 bg-zwijsen-blue rounded-full flex items-center justify-center text-white text-sm font-semibold">
             MJ
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium">Mevrouw Jansen</p>
-            <p className="text-xs text-muted-foreground">Groep 6A</p>
+            <p className="text-sm font-semibold text-gray-900">
+              Mevrouw Jansen
+            </p>
+            <p className="text-xs text-gray-600">Groep 6A</p>
           </div>
         </div>
-        <Button variant="ghost" size="sm" className="w-full justify-start mt-2">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="w-full justify-start mt-3 text-gray-600 hover:bg-zwijsen-blue hover:text-white font-semibold transition-all duration-200"
+        >
           <LogOut className="w-4 h-4 mr-2" />
           Uitloggen
         </Button>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

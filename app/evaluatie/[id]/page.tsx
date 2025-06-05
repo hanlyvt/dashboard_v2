@@ -1,20 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { Separator } from "@/components/ui/separator"
-import { ArrowLeft, X, Check, Download, Send, Bot, User } from "lucide-react"
-import Link from "next/link"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
+import { ArrowLeft, X, Check, Download, Send, Bot, User } from "lucide-react";
+import Link from "next/link";
 
-export default function WorksheetEvaluationPage({ params }: { params: { id: string } }) {
-  const [feedback, setFeedback] = useState("")
-  const [grade, setGrade] = useState("")
+export default function WorksheetEvaluationPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const [feedback, setFeedback] = useState("");
+  const [grade, setGrade] = useState("");
   const [aiErrors, setAiErrors] = useState([
     {
       id: 1,
@@ -23,7 +33,8 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
       correctAnswer: "7/8",
       aiConfidence: 0.95,
       confirmed: null,
-      explanation: "De leerling heeft de noemers niet gelijkgemaakt voor het optellen van breuken.",
+      explanation:
+        "De leerling heeft de noemers niet gelijkgemaakt voor het optellen van breuken.",
     },
     {
       id: 2,
@@ -32,7 +43,8 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
       correctAnswer: "6/12 = 1/2",
       aiConfidence: 0.88,
       confirmed: null,
-      explanation: "Vermenigvuldiging van breuken: teller × teller en noemer × noemer.",
+      explanation:
+        "Vermenigvuldiging van breuken: teller × teller en noemer × noemer.",
     },
     {
       id: 3,
@@ -43,7 +55,7 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
       confirmed: null,
       explanation: "2/3 = 16/24 en 5/8 = 15/24, dus 2/3 is groter.",
     },
-  ])
+  ]);
 
   const worksheet = {
     id: params.id,
@@ -53,41 +65,50 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
     submittedAt: "2024-01-15T10:30:00",
     totalQuestions: 15,
     class: "Groep 6A",
-  }
+  };
 
   const confirmError = (errorId: number, isCorrect: boolean) => {
-    setAiErrors((prev) => prev.map((error) => (error.id === errorId ? { ...error, confirmed: isCorrect } : error)))
-  }
+    setAiErrors((prev) =>
+      prev.map((error) =>
+        error.id === errorId ? { ...error, confirmed: isCorrect } : error
+      )
+    );
+  };
 
   const generateFeedback = () => {
-    const confirmedErrors = aiErrors.filter((error) => error.confirmed === true)
-    const totalErrors = confirmedErrors.length
-    const score = (((worksheet.totalQuestions - totalErrors) / worksheet.totalQuestions) * 10).toFixed(1)
+    const confirmedErrors = aiErrors.filter(
+      (error) => error.confirmed === true
+    );
+    const totalErrors = confirmedErrors.length;
+    const score = (
+      ((worksheet.totalQuestions - totalErrors) / worksheet.totalQuestions) *
+      10
+    ).toFixed(1);
 
-    let generatedFeedback = `Hallo Emma,\n\nIk heb je werkblad over breuken bekeken. `
+    let generatedFeedback = `Hallo Emma,\n\nIk heb je werkblad over breuken bekeken. `;
 
     if (totalErrors === 0) {
-      generatedFeedback += `Geweldig gedaan! Je hebt alle opgaven correct gemaakt. Je begrijpt breuken heel goed.`
+      generatedFeedback += `Geweldig gedaan! Je hebt alle opgaven correct gemaakt. Je begrijpt breuken heel goed.`;
     } else if (totalErrors <= 2) {
-      generatedFeedback += `Goed gedaan! Je hebt de meeste opgaven correct gemaakt. `
-      generatedFeedback += `Let vooral op bij het ${confirmedErrors[0]?.explanation.toLowerCase()}`
+      generatedFeedback += `Goed gedaan! Je hebt de meeste opgaven correct gemaakt. `;
+      generatedFeedback += `Let vooral op bij het ${confirmedErrors[0]?.explanation.toLowerCase()}`;
     } else {
-      generatedFeedback += `Je hebt hard gewerkt aan dit werkblad. Er zijn nog een paar punten waar je op kunt letten:\n\n`
+      generatedFeedback += `Je hebt hard gewerkt aan dit werkblad. Er zijn nog een paar punten waar je op kunt letten:\n\n`;
       confirmedErrors.forEach((error, index) => {
-        generatedFeedback += `${index + 1}. ${error.explanation}\n`
-      })
+        generatedFeedback += `${index + 1}. ${error.explanation}\n`;
+      });
     }
 
-    generatedFeedback += `\n\nBlijf oefenen en vraag gerust om hulp als je iets niet begrijpt!\n\nGroetjes,\nMevrouw Jansen`
+    generatedFeedback += `\n\nBlijf oefenen en vraag gerust om hulp als je iets niet begrijpt!\n\nGroetjes,\nMevrouw Jansen`;
 
-    setFeedback(generatedFeedback)
-    setGrade(score)
-  }
+    setFeedback(generatedFeedback);
+    setGrade(score);
+  };
 
   const saveFeedback = () => {
     // Simulate saving feedback
-    alert("Feedback opgeslagen en verstuurd naar Emma!")
-  }
+    alert("Feedback opgeslagen en verstuurd naar Emma!");
+  };
 
   return (
     <div className="flex-1 space-y-6 p-6">
@@ -143,7 +164,10 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
               <Bot className="w-5 h-5 text-blue-600" />
               AI Foutdetectie
             </CardTitle>
-            <CardDescription>Controleer de door AI gedetecteerde fouten en bevestig of corrigeer ze</CardDescription>
+            <CardDescription>
+              Controleer de door AI gedetecteerde fouten en bevestig of
+              corrigeer ze
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {aiErrors.map((error) => (
@@ -153,15 +177,25 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
                     <h4 className="font-medium text-sm">{error.question}</h4>
                     <div className="mt-2 space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground">Antwoord leerling:</span>
-                        <span className="text-sm font-medium text-red-600">{error.studentAnswer}</span>
+                        <span className="text-xs text-muted-foreground">
+                          Antwoord leerling:
+                        </span>
+                        <span className="text-sm font-medium text-red-600">
+                          {error.studentAnswer}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground">Correct antwoord:</span>
-                        <span className="text-sm font-medium text-green-600">{error.correctAnswer}</span>
+                        <span className="text-xs text-muted-foreground">
+                          Correct antwoord:
+                        </span>
+                        <span className="text-sm font-medium text-green-600">
+                          {error.correctAnswer}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-2">{error.explanation}</p>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      {error.explanation}
+                    </p>
                   </div>
                   <Badge variant="outline" className="text-xs">
                     {Math.round(error.aiConfidence * 100)}% zeker
@@ -205,7 +239,9 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
               <User className="w-5 h-5 text-green-600" />
               Feedback & Beoordeling
             </CardTitle>
-            <CardDescription>Geef persoonlijke feedback en een cijfer aan de leerling</CardDescription>
+            <CardDescription>
+              Geef persoonlijke feedback en een cijfer aan de leerling
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
@@ -246,5 +282,5 @@ export default function WorksheetEvaluationPage({ params }: { params: { id: stri
         </Card>
       </div>
     </div>
-  )
+  );
 }

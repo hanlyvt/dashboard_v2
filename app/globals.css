@@ -39,6 +39,9 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Zwijsen brand colors */
+    --zwijsen-blue: #0069b3;
   }
 
   .dark {
@@ -83,8 +86,20 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-noto-sans), system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-noto-sans), system-ui, sans-serif;
+    font-weight: 600;
   }
 }
 
@@ -104,4 +119,25 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Zwijsen brand styling */
+.text-zwijsen-blue {
+  color: var(--zwijsen-blue);
+}
+
+.bg-zwijsen-blue {
+  background-color: var(--zwijsen-blue);
+}
+
+.border-zwijsen-blue {
+  border-color: var(--zwijsen-blue);
+}
+
+.hover\:bg-zwijsen-blue:hover {
+  background-color: var(--zwijsen-blue);
+}
+
+.hover\:text-zwijsen-blue:hover {
+  color: var(--zwijsen-blue);
 }
