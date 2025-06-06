@@ -61,7 +61,7 @@ const menuItems = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="border-r" style={{ backgroundColor: "#E8F4F8" }}>
+    <Sidebar className="border-r bg-zwijsen-blue">
       <SidebarHeader className="p-6 border-b">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
@@ -115,7 +115,7 @@ export function AppSidebar() {
                 <SidebarMenuButton asChild className="w-full">
                   <Link
                     href="/instellingen"
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-zwijsen-blue hover:text-[#0069B3] /transition-all duration-200 font-semibold"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-zwijsen-blue hover:text-zwijsen-blue /transition-all duration-200 font-semibold"
                   >
                     <Settings className="w-5 h-5" />
                     <span className="text-sm">Instellingen</span>

@@ -55,7 +55,19 @@ export default function WorksheetEvaluationPage({
   const [zoom, setZoom] = useState(100);
   const { toast } = useToast();
 
-  const [aiErrors, setAiErrors] = useState([
+  type AiError = {
+    id: number;
+    question: string;
+    studentAnswer: string;
+    correctAnswer: string;
+    aiConfidence: number;
+    confirmed: boolean | null;
+    explanation: string;
+    position: { x: number; y: number };
+    highlighted: boolean;
+  };
+
+  const [aiErrors, setAiErrors] = useState<AiError[]>([
     {
       id: 1,
       question: "Vraag 3: 3/4 + 1/8 = ?",
