@@ -61,7 +61,7 @@ const menuItems = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="border-r bg-white">
+    <Sidebar className="border-r" style={{ backgroundColor: "#E8F4F8" }}>
       <SidebarHeader className="p-6 border-b">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden">
