@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import {
   Card,
   CardContent,
@@ -39,12 +39,9 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import React from "react";
 
-export default function WorksheetEvaluationPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function WorksheetEvaluationPage({ params }: { params: Promise<{ id: string }> }) {
   const [feedback, setFeedback] = useState("");
   const [grade, setGrade] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,6 +51,8 @@ export default function WorksheetEvaluationPage({
   const [selectedError, setSelectedError] = useState<number | null>(null);
   const [zoom, setZoom] = useState(100);
   const { toast } = useToast();
+  const resolvedParams = React.use(params);
+  const worksheetId = resolvedParams.id;
 
   type AiError = {
     id: number;
@@ -106,7 +105,7 @@ export default function WorksheetEvaluationPage({
   ]);
 
   const worksheet = {
-    id: params.id,
+    id: worksheetId,
     student: "Emma de Vries",
     subject: "Rekenen",
     title: "Breuken oefening 3",
@@ -392,11 +391,10 @@ export default function WorksheetEvaluationPage({
                           {aiErrors.map((error) => (
                             <div
                               key={error.id}
-                              className={`absolute border-2 rounded transition-all duration-300 cursor-pointer ${
-                                error.highlighted
+                              className={`absolute border-2 rounded transition-all duration-300 cursor-pointer ${error.highlighted
                                   ? "border-red-500 bg-red-500/20 shadow-lg"
                                   : "border-red-400 bg-red-400/10 hover:bg-red-400/20"
-                              }`}
+                                }`}
                               style={{
                                 left: `${error.position.x}%`,
                                 top: `${error.position.y}%`,
@@ -430,11 +428,10 @@ export default function WorksheetEvaluationPage({
                       {aiErrors.map((error) => (
                         <Card
                           key={error.id}
-                          className={`cursor-pointer transition-all duration-200 ${
-                            error.highlighted
+                          className={`cursor-pointer transition-all duration-200 ${error.highlighted
                               ? "ring-2 ring-red-500 bg-red-50"
                               : "hover:bg-gray-50"
-                          }`}
+                            }`}
                           onClick={() => highlightError(error.id)}
                         >
                           <CardContent className="p-4">
