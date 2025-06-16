@@ -107,7 +107,7 @@ export function AppSidebar() {
 
         <SidebarGroup>
           <SidebarGroupLabel className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
-            Account
+            Accountt
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
