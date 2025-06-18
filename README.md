@@ -1,30 +1,60 @@
-# Schooldashboard ontwerp
+# Zwijsen Dashboard – Projectopzet & Structuur
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+Dit project is een prototype van een digitaal dashboard voor het nakijken en beheren van werkbladen en leerlingresultaten, ontwikkeld voor het Zwijsen-project.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/hanlytrang-gmailcoms-projects/v0-schooldashboard-ontwerp)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/BhFqSiVCGCX)
+## Projectopzet
 
-## Overview
+Ik ben gestart met het aanmaken van een privé repository op GitHub. Nadat de repository was aangemaakt, heb ik de HTTPS-link gekopieerd en het project lokaal gecloned via een fork. Vervolgens heb ik het project geopend in Visual Studio Code (VSCode) en met het commando `npm i` de benodigde dependencies geïnstalleerd om het project op te zetten[1].
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## Structuur van het Project
 
-## Deployment
+### Bestanden en Mappen
 
-Your project is live at:
+- **Layout bestand:**  
+  Dit bestand zorgt voor de basisstructuur die over alle pagina’s heen wordt getoond, zoals de navigatie en sidebar. Hierdoor blijft de layout consistent op elke pagina[2].
+- **Page bestand:**  
+  Dit is de hoofdpagina (home) van het dashboard. Elke nieuwe pagina (zoals de leerlingenlijst) wordt als aparte map met een eigen `page` bestand toegevoegd[2].
 
-**[https://vercel.com/hanlytrang-gmailcoms-projects/v0-schooldashboard-ontwerp](https://vercel.com/hanlytrang-gmailcoms-projects/v0-schooldashboard-ontwerp)**
+### Voorbeeld: Nieuwe Pagina Toevoegen
 
-## Build your app
+Voor de leerlingenlijst heb ik een nieuwe map aangemaakt en daarin een eigen `page` bestand geplaatst. Zo kun je eenvoudig verschillende onderdelen van het dashboard uitbreiden en overzichtelijk houden[2].
 
-Continue building your app on:
+## Componenten (Versie 1.0)
 
-**[https://v0.dev/chat/projects/BhFqSiVCGCX](https://v0.dev/chat/projects/BhFqSiVCGCX)**
+Het prototype bestaat uit verschillende herbruikbare componenten, die zijn opgeslagen in de `components` map. Enkele belangrijke componenten:
 
-## How It Works
+- **Sidebar:**  
+  Gemaakt in de componentenmap en aangeroepen in het layout bestand, zodat de sidebar op elke pagina zichtbaar is[2].
+- **Werkbladen Card:**  
+  Voor het overzichtelijk tonen van werkbladen.
+- **Search Header:**  
+  Voor het zoeken/filteren binnen het dashboard.
+- **Leerlingen Lijst Interface:**  
+  Voor het tonen van alle leerlingen.
+- **Dashboardcard (Leerlingen aandacht):**  
+  Voor het uitlichten van leerlingen die extra aandacht nodig hebben.
+- **Resultaten:**  
+  Voor het tonen van de resultaten van leerlingen.
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Installatie & Gebruik
+
+1. Clone deze repository:
+git clone https://github.com/hanlyvt/dashboard_v2
+
+2. Installeer de dependencies:
+npm install
+
+3. Start het project:
+npm run dev
+
+4. Open het project in je browser via de lokale host die in de terminal wordt weergegeven.
+
+## Overzicht
+
+Deze opzet maakt het eenvoudig om het dashboard uit te breiden met nieuwe pagina’s en componenten. Door de modulaire structuur en het gebruik van een centrale layout blijft het project overzichtelijk en schaalbaar[2].
+
+---
+
+[1]: https://docs.github.com/en/get-started/quickstart/create-a-repo
+[2]: https://react.dev/learn
+
