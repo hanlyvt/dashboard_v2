@@ -1,9 +1,22 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { ClipboardCheck, Users, AlertCircle, CheckCircle, Clock, TrendingUp } from "lucide-react"
-import Link from "next/link"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  ClipboardCheck,
+  Users,
+  AlertCircle,
+  CheckCircle,
+  Clock,
+  TrendingUp,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function Dashboard() {
   const stats = [
@@ -39,12 +52,12 @@ export default function Dashboard() {
       color: "text-purple-600",
       bgColor: "bg-purple-100",
     },
-  ]
+  ];
 
   const recentWorksheets = [
     {
       id: 1,
-      student: "Emma de Vries",
+      student: "Roy de Vries",
       subject: "Rekenen",
       title: "Breuken oefening 3",
       status: "pending",
@@ -69,7 +82,7 @@ export default function Dashboard() {
       submittedAt: "1 dag geleden",
       aiDetected: 0,
     },
-  ]
+  ];
 
   return (
     <div className="flex-1 space-y-6 p-6">
@@ -78,7 +91,9 @@ export default function Dashboard() {
           <SidebarTrigger />
           <div>
             <h1 className="text-3xl font-bold">Dashboard</h1>
-            <p className="text-muted-foreground">Welkom terug, Mevrouw Jansen</p>
+            <p className="text-muted-foreground">
+              Welkom terug, Mevrouw Jansen
+            </p>
           </div>
         </div>
         <div className="text-sm text-muted-foreground">
@@ -96,14 +111,18 @@ export default function Dashboard() {
         {stats.map((stat) => (
           <Card key={stat.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
+              <CardTitle className="text-sm font-medium">
+                {stat.title}
+              </CardTitle>
               <div className={`p-2 rounded-lg ${stat.bgColor}`}>
                 <stat.icon className={`h-4 w-4 ${stat.color}`} />
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-muted-foreground">{stat.description}</p>
+              <p className="text-xs text-muted-foreground">
+                {stat.description}
+              </p>
             </CardContent>
           </Card>
         ))}
@@ -115,7 +134,9 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>Recente werkbladen</CardTitle>
-              <CardDescription>Laatst ingediende werkbladen die beoordeling nodig hebben</CardDescription>
+              <CardDescription>
+                Laatst ingediende werkbladen die beoordeling nodig hebben
+              </CardDescription>
             </div>
             <Button asChild>
               <Link href="/evaluatie">Alle werkbladen</Link>
@@ -125,7 +146,10 @@ export default function Dashboard() {
         <CardContent>
           <div className="space-y-4">
             {recentWorksheets.map((worksheet) => (
-              <div key={worksheet.id} className="flex items-center justify-between p-4 border rounded-lg">
+              <div
+                key={worksheet.id}
+                className="flex items-center justify-between p-4 border rounded-lg"
+              >
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                     <span className="text-sm font-medium text-blue-600">
@@ -137,7 +161,9 @@ export default function Dashboard() {
                   </div>
                   <div>
                     <h4 className="font-medium">{worksheet.student}</h4>
-                    <p className="text-sm text-muted-foreground">{worksheet.title}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {worksheet.title}
+                    </p>
                     <div className="flex items-center gap-2 mt-1">
                       <Badge variant="secondary" className="text-xs">
                         {worksheet.subject}
@@ -153,15 +179,25 @@ export default function Dashboard() {
                   {worksheet.aiDetected > 0 && (
                     <div className="flex items-center gap-1 text-orange-600">
                       <AlertCircle className="w-4 h-4" />
-                      <span className="text-sm">{worksheet.aiDetected} mogelijke fouten</span>
+                      <span className="text-sm">
+                        {worksheet.aiDetected} mogelijke fouten
+                      </span>
                     </div>
                   )}
-                  <Badge variant={worksheet.status === "completed" ? "default" : "secondary"}>
-                    {worksheet.status === "completed" ? "Afgerond" : "Te beoordelen"}
+                  <Badge
+                    variant={
+                      worksheet.status === "completed" ? "default" : "secondary"
+                    }
+                  >
+                    {worksheet.status === "completed"
+                      ? "Afgerond"
+                      : "Te beoordelen"}
                   </Badge>
                   <Button size="sm" asChild>
                     <Link href={`/evaluatie/${worksheet.id}`}>
-                      {worksheet.status === "completed" ? "Bekijken" : "Beoordelen"}
+                      {worksheet.status === "completed"
+                        ? "Bekijken"
+                        : "Beoordelen"}
                     </Link>
                   </Button>
                 </div>
@@ -171,5 +207,5 @@ export default function Dashboard() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

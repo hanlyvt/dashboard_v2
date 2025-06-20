@@ -1,16 +1,29 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { Search, Filter, AlertCircle, CheckCircle, Clock, Download } from "lucide-react"
-import Link from "next/link"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import {
+  Search,
+  Filter,
+  AlertCircle,
+  CheckCircle,
+  Clock,
+  Download,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function EvaluatiePage() {
   const worksheets = [
     {
       id: 1,
-      student: "Emma de Vries",
+      student: "Roy de Vries",
       subject: "Rekenen",
       title: "Breuken oefening 3",
       status: "pending",
@@ -58,20 +71,22 @@ export default function EvaluatiePage() {
       aiDetected: 0,
       grade: null,
     },
-  ]
+  ];
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
+    const date = new Date(dateString);
     return date.toLocaleDateString("nl-NL", {
       day: "numeric",
       month: "short",
       hour: "2-digit",
       minute: "2-digit",
-    })
-  }
+    });
+  };
 
-  const pendingCount = worksheets.filter((w) => w.status === "pending").length
-  const completedCount = worksheets.filter((w) => w.status === "completed").length
+  const pendingCount = worksheets.filter((w) => w.status === "pending").length;
+  const completedCount = worksheets.filter(
+    (w) => w.status === "completed"
+  ).length;
 
   return (
     <div className="flex-1 space-y-6 p-6">
@@ -80,7 +95,9 @@ export default function EvaluatiePage() {
           <SidebarTrigger />
           <div>
             <h1 className="text-3xl font-bold">Evaluatie</h1>
-            <p className="text-muted-foreground">Beoordeel werkbladen en geef feedback aan leerlingen</p>
+            <p className="text-muted-foreground">
+              Beoordeel werkbladen en geef feedback aan leerlingen
+            </p>
           </div>
         </div>
       </div>
@@ -93,8 +110,12 @@ export default function EvaluatiePage() {
             <Clock className="h-4 w-4 text-orange-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-600">{pendingCount}</div>
-            <p className="text-xs text-muted-foreground">Werkbladen wachten op feedback</p>
+            <div className="text-2xl font-bold text-orange-600">
+              {pendingCount}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Werkbladen wachten op feedback
+            </p>
           </CardContent>
         </Card>
 
@@ -104,8 +125,12 @@ export default function EvaluatiePage() {
             <CheckCircle className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">{completedCount}</div>
-            <p className="text-xs text-muted-foreground">Werkbladen beoordeeld</p>
+            <div className="text-2xl font-bold text-green-600">
+              {completedCount}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Werkbladen beoordeeld
+            </p>
           </CardContent>
         </Card>
 
@@ -118,7 +143,9 @@ export default function EvaluatiePage() {
             <div className="text-2xl font-bold text-blue-600">
               {worksheets.reduce((sum, w) => sum + w.aiDetected, 0)}
             </div>
-            <p className="text-xs text-muted-foreground">Mogelijke fouten gedetecteerd</p>
+            <p className="text-xs text-muted-foreground">
+              Mogelijke fouten gedetecteerd
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -127,14 +154,19 @@ export default function EvaluatiePage() {
       <Card>
         <CardHeader>
           <CardTitle>Werkbladen overzicht</CardTitle>
-          <CardDescription>Bekijk en beoordeel alle ingediende werkbladen</CardDescription>
+          <CardDescription>
+            Bekijk en beoordeel alle ingediende werkbladen
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex gap-4 mb-6">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input placeholder="Zoek op leerling of werkblad..." className="pl-10" />
+                <Input
+                  placeholder="Zoek op leerling of werkblad..."
+                  className="pl-10"
+                />
               </div>
             </div>
             <Button variant="outline">
@@ -160,12 +192,16 @@ export default function EvaluatiePage() {
                   </div>
                   <div>
                     <h4 className="font-medium">{worksheet.student}</h4>
-                    <p className="text-sm text-muted-foreground">{worksheet.title}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {worksheet.title}
+                    </p>
                     <div className="flex items-center gap-2 mt-1">
                       <Badge variant="secondary" className="text-xs">
                         {worksheet.subject}
                       </Badge>
-                      <span className="text-xs text-muted-foreground">{formatDate(worksheet.submittedAt)}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {formatDate(worksheet.submittedAt)}
+                      </span>
                       {worksheet.grade && (
                         <Badge variant="default" className="text-xs">
                           Cijfer: {worksheet.grade}
@@ -183,8 +219,14 @@ export default function EvaluatiePage() {
                     </div>
                   )}
 
-                  <Badge variant={worksheet.status === "completed" ? "default" : "secondary"}>
-                    {worksheet.status === "completed" ? "Afgerond" : "Te beoordelen"}
+                  <Badge
+                    variant={
+                      worksheet.status === "completed" ? "default" : "secondary"
+                    }
+                  >
+                    {worksheet.status === "completed"
+                      ? "Afgerond"
+                      : "Te beoordelen"}
                   </Badge>
 
                   <div className="flex gap-2">
@@ -196,7 +238,9 @@ export default function EvaluatiePage() {
                     )}
                     <Button size="sm" asChild>
                       <Link href={`/evaluatie/${worksheet.id}`}>
-                        {worksheet.status === "completed" ? "Bekijken" : "Beoordelen"}
+                        {worksheet.status === "completed"
+                          ? "Bekijken"
+                          : "Beoordelen"}
                       </Link>
                     </Button>
                   </div>
@@ -207,5 +251,5 @@ export default function EvaluatiePage() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
