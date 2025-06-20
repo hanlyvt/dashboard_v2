@@ -79,9 +79,9 @@ export function AppSidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="px-4 py-6">
+      <SidebarContent className="px-4 py-6 bg-zwijsen-blue">
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider font-semibold text-gray-300 mb-3">
             Navigatie
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -91,7 +91,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild className="w-full">
                     <Link
                       href={item.url}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-zwijsen-blue hover:text-[#0069B3] transition-all duration-200 font-semibold"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-100 hover:bg-zwijsen-blue hover:text-[#0069B3] transition-all duration-200 font-semibold"
                     >
                       <item.icon className="w-5 h-5" />
                       <span className="text-sm">{item.title}</span>
@@ -106,7 +106,7 @@ export function AppSidebar() {
         <SidebarSeparator className="my-6" />
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
+          <SidebarGroupLabel className="text-xs uppercase tracking-wider font-semibold text-gray-300 mb-3">
             Account
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -115,7 +115,7 @@ export function AppSidebar() {
                 <SidebarMenuButton asChild className="w-full">
                   <Link
                     href="/instellingen"
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 hover:bg-zwijsen-blue hover:text-zwijsen-blue /transition-all duration-200 font-semibold"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-100 hover:bg-zwijsen-blue hover:text-zwijsen-blue /transition-all duration-200 font-semibold"
                   >
                     <Settings className="w-5 h-5" />
                     <span className="text-sm">Instellingen</span>
